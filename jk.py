@@ -22,10 +22,9 @@ T_MUL = 'MUL'
 T_DIV = 'DIV'
 T_LPAREN = 'LPAREN'
 T_RPAREN = 'RPAREN'
+T_LAMBDA = 'LAMBDA'
 
 DIGITS = '0123456789'
-
-LAMBDA = '\\'
 
 # Token have a type, and value (the character)
 class Token:
@@ -110,6 +109,9 @@ class Lexer:
                 self.advance()
             elif self.currentChar == ")":
                 tokens.append(Token(T_RPAREN))
+                self.advance()
+            elif self.currentChar == "\\":
+                tokens.append(Token(T_LAMBDA))
                 self.advance()
             else:
                 posStart = self.pos.copy()
